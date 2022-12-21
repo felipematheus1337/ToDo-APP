@@ -1,14 +1,25 @@
 import * as C from "./App.styles";
 import { useState } from 'react';
+import { Item } from './types/item';
+import { ListItem} from "./components/ListItem/index";
 
 const App = () => {
 
-  const [list, setList] = useState([]);
+  const [list, setList] = useState<Item[]>([
+    { id: 1, name: 'Estudar TypeScript', done: false },
+    {id: 2, name: 'Comprar um bolo',done: true}
+  ]);
 
   return (
     <C.Container>
       <C.Area>
         <C.Header>Lista de Tarefas</C.Header>
+
+        {/**Adicionar nova tarefa */}
+
+        {list.map((item, index) => (
+          <ListItem key={index} item={item} />
+        ))}
     </C.Area>
    </C.Container>
  );
